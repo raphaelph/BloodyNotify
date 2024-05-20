@@ -1,9 +1,6 @@
 ﻿using BloodyNotify.DB;
 using BloodyNotify.Patch;
 using ProjectM;
-using System;
-using System.Threading;
-using UnityEngine;
 
 namespace BloodyNotify.AutoAnnouncer
 {
