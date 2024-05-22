@@ -1414,7 +1414,7 @@
           }
         }
       },
-      "VRising.Bloodstone/0.1.6": {
+      "VRising.Bloodstone/0.2.1": {
         "type": "package",
         "dependencies": {
           "BepInEx.PluginInfoProps": "2.1.0",
@@ -1422,7 +1422,7 @@
           "Fody": "6.6.2",
           "Iced": "1.18.0",
           "System.Text.Json": "6.0.7",
-          "VRising.Unhollowed.Client": "0.6.5.57575071"
+          "VRising.Unhollowed.Client": "1.0.0.792660001"
         },
         "compile": {
           "lib/net6.0/Bloodstone.dll": {}
@@ -1431,7 +1431,7 @@
           "lib/net6.0/Bloodstone.dll": {}
         }
       },
-      "VRising.Unhollowed.Client/1.0.0.792660001": {
+      "VRising.Unhollowed.Client/1.0.2.794360001": {
         "type": "package",
         "compile": {
           "lib/net6.0/Backtrace.Unity.dll": {},
@@ -1784,7 +1784,7 @@
           "lib/net6.0/com.stunlock.platform.pc.dll": {}
         }
       },
-      "VRising.VampireCommandFramework/0.8.4": {
+      "VRising.VampireCommandFramework/0.9.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/VampireCommandFramework.dll": {
@@ -5014,10 +5014,10 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "VRising.Bloodstone/0.1.6": {
-      "sha512": "PKiq6w0scM//yDijGQaiXHjjO1HDOJzabRAbE06e64b6D2dVgvgVkdtKK1iBAx/72MnSrad9iJtPOGAvpyo42A==",
+    "VRising.Bloodstone/0.2.1": {
+      "sha512": "tQSuFBU4wyfjO2+jd8V8dUoPabtP6PdTZxKSv5cKRzSAPJx+SO/BWvBvKJ2jLihSSZ+aAtdNb/9fPtVcDjdg1g==",
       "type": "package",
-      "path": "vrising.bloodstone/0.1.6",
+      "path": "vrising.bloodstone/0.2.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5025,14 +5025,14 @@
         "README.md",
         "icon.png",
         "lib/net6.0/Bloodstone.dll",
-        "vrising.bloodstone.0.1.6.nupkg.sha512",
+        "vrising.bloodstone.0.2.1.nupkg.sha512",
         "vrising.bloodstone.nuspec"
       ]
     },
-    "VRising.Unhollowed.Client/1.0.0.792660001": {
-      "sha512": "+hQ5u8LjDu7fewGJdN30q11AC73kd9FATN2sa4g1X+gvv9ixyb9GeRafK/LC0b9k4wxLngOkaeBQTwwwxFxMiQ==",
+    "VRising.Unhollowed.Client/1.0.2.794360001": {
+      "sha512": "a92Qpd+UCtT9WkaiCzSV6dAdI/AT56SG2JO/xRPZqeKX09CnMXlI/WRVy4StTyWY1sKlaOOknNRukV4wix3AZA==",
       "type": "package",
-      "path": "vrising.unhollowed.client/1.0.0.792660001",
+      "path": "vrising.unhollowed.client/1.0.2.794360001",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5211,14 +5211,14 @@
         "lib/net6.0/com.stunlock.network.eos.dll",
         "lib/net6.0/com.stunlock.platform.dll",
         "lib/net6.0/com.stunlock.platform.pc.dll",
-        "vrising.unhollowed.client.1.0.0.792660001.nupkg.sha512",
+        "vrising.unhollowed.client.1.0.2.794360001.nupkg.sha512",
         "vrising.unhollowed.client.nuspec"
       ]
     },
-    "VRising.VampireCommandFramework/0.8.4": {
-      "sha512": "4G8j0zivjajkLlp/+RRKkiA43764rlwCY4PKRK34TR4w6LgKB4gm4EadPgSy4Vm1+jsktjGEMYSJhS9SOlZUOA==",
+    "VRising.VampireCommandFramework/0.9.0": {
+      "sha512": "2O4nKLVuqn3huIKY7kNjnJTxBjjAMNPtQj+duikS/j5LoXUkjFWimXJ0JXOv2p+ZkTapxPMAdKLT6KkWA+MaVA==",
       "type": "package",
-      "path": "vrising.vampirecommandframework/0.8.4",
+      "path": "vrising.vampirecommandframework/0.9.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5227,7 +5227,7 @@
         "lib/net6.0/VampireCommandFramework.deps.json",
         "lib/net6.0/VampireCommandFramework.dll",
         "lib/net6.0/VampireCommandFramework.pdb",
-        "vrising.vampirecommandframework.0.8.4.nupkg.sha512",
+        "vrising.vampirecommandframework.0.9.0.nupkg.sha512",
         "vrising.vampirecommandframework.nuspec"
       ]
     }
@@ -5239,26 +5239,26 @@
       "BepInEx.Unity.IL2CPP >= 6.0.0-be.668",
       "Fody >= 6.8.0",
       "ILMerge.Fody >= 1.24.0",
-      "VRising.Bloodstone >= 0.1.*",
-      "VRising.Unhollowed.Client >= 1.0.0.*",
-      "VRising.VampireCommandFramework >= 0.8.*"
+      "VRising.Bloodstone >= 0.2.1",
+      "VRising.Unhollowed.Client >= 1.0.2.794360001",
+      "VRising.VampireCommandFramework >= 0.9.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Trodi\\.nuget\\packages\\": {}
+    "C:\\Users\\raphi\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "3.0.3",
+    "version": "3.0.4",
     "restore": {
-      "projectUniqueName": "E:\\MODS\\BloodyNotify\\BloodyNotify.csproj",
+      "projectUniqueName": "C:\\Users\\raphi\\Documents\\GitHub\\BloodyNotify\\BloodyNotify.csproj",
       "projectName": "BloodyNotify",
-      "projectPath": "E:\\MODS\\BloodyNotify\\BloodyNotify.csproj",
-      "packagesPath": "C:\\Users\\Trodi\\.nuget\\packages\\",
-      "outputPath": "E:\\MODS\\BloodyNotify\\obj\\",
+      "projectPath": "C:\\Users\\raphi\\Documents\\GitHub\\BloodyNotify\\BloodyNotify.csproj",
+      "packagesPath": "C:\\Users\\raphi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\raphi\\Documents\\GitHub\\BloodyNotify\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "E:\\MODS\\BloodyNotify\\NuGet.Config",
-        "C:\\Users\\Trodi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\raphi\\Documents\\GitHub\\BloodyNotify\\NuGet.Config",
+        "C:\\Users\\raphi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5266,8 +5266,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "E:\\MODS\\BloodyWallet\\bin\\Debug": {},
         "https://api.nuget.org/v3/index.json": {},
+        "https://git.seplag.ce.gov.br/api/v4/projects/125/packages/nuget/index.json": {},
+        "https://git.seplag.ce.gov.br/api/v4/projects/174/packages/nuget/index.json": {},
         "https://nuget.bepinex.dev/v3/index.json": {},
         "https://nuget.samboy.dev/v3/index.json": {}
       },
@@ -5281,11 +5282,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -5318,15 +5314,15 @@
           },
           "VRising.Bloodstone": {
             "target": "Package",
-            "version": "[0.1.*, )"
+            "version": "[0.2.1, )"
           },
           "VRising.Unhollowed.Client": {
             "target": "Package",
-            "version": "[1.0.0.*, )"
+            "version": "[1.0.2.794360001, )"
           },
           "VRising.VampireCommandFramework": {
             "target": "Package",
-            "version": "[0.8.*, )"
+            "version": "[0.9.0, )"
           }
         },
         "imports": [
@@ -5345,7 +5341,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

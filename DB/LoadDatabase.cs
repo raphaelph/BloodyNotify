@@ -18,6 +18,8 @@ namespace BloodyNotify.DB
             VBloodNotifyIgnoreConfig();
             LoadAutoAnnouncerMessagesConfig();
             LoadMessageOfTheDayConfig();
+            LoadUsersIgnoreConfigOnline();
+            LoadCountVBloodKill();
         }
         public static void LoadDefaultAnnounce()
         {
@@ -79,6 +81,20 @@ namespace BloodyNotify.DB
             var json = File.ReadAllText(Path.Combine(Config.ConfigPath, "message_of_the_day.json"));
             var dictionary = JsonSerializer.Deserialize<List<string>>(json);
             Database.setMessageOfTheDay(dictionary);
+        }
+
+        private static void LoadUsersIgnoreConfigOnline()
+        {
+            var json = File.ReadAllText(Path.Combine(Config.ConfigPath, "users_ignore_online.json"));
+            var dictionary = JsonSerializer.Deserialize<List<string>>(json);
+            Database.setUsersIgnoreOnline(dictionary);
+        }
+
+        private static void LoadCountVBloodKill()
+        {
+            var json = File.ReadAllText(Path.Combine(Config.ConfigPath, "count_vblood_kill.json"));
+            var dictionary = JsonSerializer.Deserialize<List<Boss>>(json);
+            Database.setCountVBloodKill(dictionary);
         }
     }
 }

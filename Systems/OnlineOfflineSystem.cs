@@ -26,6 +26,11 @@ namespace BloodyNotify.Systems
 
             Plugin.Logger.LogInfo($"ha conectado {userModel.CharacterName} ");
 
+            if (Database.getUsersIgnoreOnline().Contains(userNick))
+            {
+                return;
+            }
+
             if (!isNewPlayer)
             {
                 if (Database.EnabledFeatures[NotifyFeature.online])
@@ -69,6 +74,12 @@ namespace BloodyNotify.Systems
                     var userModel = Core.Users.FromEntity(userEntity);
                     var userNick = userModel.CharacterName;
                     var _message = Database.getUserOfflineValue(userNick);
+
+                    if (Database.getUsersIgnoreOnline().Contains(userNick))
+                    {
+                        return;
+                    }
+
                     _message = _message.Replace("#user#", $"{FontColorChatSystem.Yellow(userNick)}");
                     ServerChatUtils.SendSystemMessageToAllClients(entityManager, $"{_message}");
                 }

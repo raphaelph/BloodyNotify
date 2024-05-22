@@ -8,19 +8,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BloodyNotify.AutoAnnouncer.Models;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Entities.UniversalDelegates;
 
 namespace BloodyNotify.Systems
 {
     internal class KillVBloodSystem
     {
         private const double SendMessageDelay = 2;
-        public static Dictionary<string, HashSet<string>> vbloodKills = [];
+        public static Dictionary<string, HashSet<string>> vbloodKills = new();
         private static EntityManager _entityManager = Plugin.SystemsCore.EntityManager;
         private static PrefabCollectionSystem _prefabCollectionSystem = Plugin.SystemsCore.PrefabCollectionSystem;
         private static bool checkKiller = false;
-        private static Dictionary<string, DateTime> lastKillerUpdate = [];
+        private static Dictionary<string, DateTime> lastKillerUpdate = new();
 
         public static void OnDetahVblood(VBloodSystem sender, NativeList<VBloodConsumed> deathEvents)
         {
@@ -105,6 +107,13 @@ namespace BloodyNotify.Systems
         public static string GetAnnouncementMessage(string vblood)
         {
             var killers = GetKillers(vblood);
+
+            for (var i = 0; i < killers.Count; i++)
+            {
+                killers[i] = AddCountKill(vblood, killers[i]);
+                Plugin.Logger.LogInfo($"Player: {killers[i]}");
+            }
+
             var vbloodLabel = Database.getPrefabNameValue(vblood);
             var vbloodIgnore = Database.getPrefabIgnoreValue(vblood);
             var sbKillersLabel = new StringBuilder();
@@ -140,7 +149,40 @@ namespace BloodyNotify.Systems
             var _message = Database.getDefaultAnnounceValue("VBlood");
             _message = _message.Replace("#user#", $"{sbKillersLabel}");
             _message = _message.Replace("#vblood#", $"{FontColorChatSystem.Red(vbloodLabel)}");
+            Plugin.Logger.LogInfo($"Mensagem: {_message}");
             return FontColorChatSystem.Green($"{_message}");
+        }
+
+        private static string AddCountKill(string vblood, string killer)
+        {
+
+            var count = 0;
+
+            var listCountVBloodKill = Database.getCountVBloodKill();
+
+            var possuiCount = listCountVBloodKill.FirstOrDefault(x => x.Name == vblood && x.Player == killer);
+
+            if (possuiCount == null)
+            {
+                listCountVBloodKill.Add(new Boss
+                {
+                    Name = vblood,
+                    Player = killer,
+                    Count = 1
+                });
+                count = 1;
+            }
+            else
+            {
+                count = listCountVBloodKill.First(x => x.Name == vblood && x.Player == killer).Count;
+                count += 1;
+                listCountVBloodKill.First(x => x.Name == vblood && x.Player == killer).Count = count;
+            }
+
+            Database.setCountVBloodKill(listCountVBloodKill);
+            Config.UpdateCountVBloodKill(listCountVBloodKill);
+
+            return $"{killer} ({count})";
         }
     }
 }

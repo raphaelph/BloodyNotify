@@ -27,6 +27,10 @@ namespace BloodyNotify.DB
 
         private static Dictionary<string, bool> VBloodNotifyIgnore { get; set; } = new Dictionary<string, bool>();
 
+        private static List<string> UsersIgnoreConfigOnline = new();
+
+        private static List<Boss> CountVBloodKill = new List<Boss>();
+
         static Database()
         {
             setAllFeatures(false);
@@ -260,6 +264,26 @@ namespace BloodyNotify.DB
         public static List<string> getMessageOfTheDay()
         {
             return MessageOfTheDay;
+        }
+
+        public static void setUsersIgnoreOnline(List<string> usersIgnoreConfiList)
+        {
+            UsersIgnoreConfigOnline = usersIgnoreConfiList;
+        }
+
+        public static List<string> getUsersIgnoreOnline()
+        {
+            return UsersIgnoreConfigOnline;
+        }
+
+        public static void setCountVBloodKill(List<Boss> countVBloodKill)
+        {
+            CountVBloodKill = countVBloodKill;
+        }
+
+        public static List<Boss> getCountVBloodKill()
+        {
+            return CountVBloodKill;
         }
     }
 }

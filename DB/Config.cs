@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BloodyNotify.AutoAnnouncer.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -197,6 +198,28 @@ namespace BloodyNotify.DB
 
         public static string DefaultAutoAnnounceMessagesConfig = @"[[""Message 1 Line 1"",""Message 1 Line 2""],[""Message 2 Line 1"",""Message 2 Line 2"",""Message 2 Line 3"",""Message 2 Line 4""]]";
 
+        public static List<string> DefaultIgnoreOnline => new List<string>()
+        {
+            "OgrO",
+            "Tokaia"
+        };
+
+        public static List<Boss> DefaultCountVBloodKill => new List<Boss>
+        {
+            new()
+            {
+                Name = "CHAR_Militia_Longbowman_LightArrow_Vblood",
+                Player = "Tokaia",
+                Count = 0
+            },
+            new()
+            {
+                Name = "CHAR_Wildlife_Wolf_VBlood",
+                Player = "Tokaia",
+                Count = 0
+            }
+        };
+
         public static void CreateDefaultNotificationTextConfig()
         {
             var jsonOutPut = System.Text.Json.JsonSerializer.Serialize(DefaultAnnounceDictionary, new JsonSerializerOptions { WriteIndented = true });
@@ -244,6 +267,24 @@ namespace BloodyNotify.DB
             File.WriteAllText(Path.Combine(ConfigPath, "message_of_the_day.json"), jsonOutPut);
         }
 
+        public static void CreateListIgnoreOnlineConfig()
+        {
+            var jsonOutPut = System.Text.Json.JsonSerializer.Serialize(DefaultIgnoreOnline, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(Path.Combine(ConfigPath, "users_ignore_online.json"), jsonOutPut);
+        }
+
+        public static void CreateCountVBloodKill()
+        {
+            var jsonOutPut = System.Text.Json.JsonSerializer.Serialize(DefaultCountVBloodKill, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(Path.Combine(ConfigPath, "count_vblood_kill.json"), jsonOutPut);
+        }
+
+        public static void UpdateCountVBloodKill(List<Boss> defaultCountVBloodKill)
+        {
+            var jsonOutPut = System.Text.Json.JsonSerializer.Serialize(defaultCountVBloodKill, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(Path.Combine(ConfigPath, "count_vblood_kill.json"), jsonOutPut);
+        }
+
         public static void CheckAndCreateConfigs()
         {
             if (!File.Exists(Path.Combine(ConfigPath, "users_online.json")))
@@ -284,6 +325,16 @@ namespace BloodyNotify.DB
             if (!File.Exists(Path.Combine(ConfigPath, "message_of_the_day.json")))
             {
                 CreateMessagesOfTheDayConfig();
+            }
+
+            if (!File.Exists(Path.Combine(ConfigPath, "users_ignore_online.json")))
+            {
+                CreateListIgnoreOnlineConfig();
+            }
+
+            if (!File.Exists(Path.Combine(ConfigPath, "count_vblood_kill.json")))
+            {
+                CreateCountVBloodKill();
             }
         }
     }
