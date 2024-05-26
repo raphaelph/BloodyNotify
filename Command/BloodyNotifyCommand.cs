@@ -2,6 +2,8 @@
 using Bloody.Core.API;
 using BloodyNotify.DB;
 using System.Linq;
+using Unity.Collections;
+using UnityEngine;
 using VampireCommandFramework;
 
 namespace BloodyNotify.Command
@@ -15,7 +17,7 @@ namespace BloodyNotify.Command
             ctx.Reply("Users Online ---------");
             foreach (var user in Core.Users.Online.OrderBy(x => x.IsAdmin))
             {
-                if(user.IsAdmin)
+                if (user.IsAdmin)
                 {
                     ctx.Reply($"{FontColorChatSystem.Green("[ADMIN]")} {FontColorChatSystem.Yellow(user.CharacterName)}");
                 } else
@@ -26,10 +28,38 @@ namespace BloodyNotify.Command
         }
 
 
+        /// INICIO DO REMOVE_KILL
+
+        [Command("removecount","rc", description: "Remove the kill counter per player from VBlood.", adminOnly: true)]
+        public static void RemoveCountKill(ChatCommandContext ctx, string player) 
+
+        {
+            if (Core.Users.All.Any(x => x.CharacterName == (player)))
+            {
+                var listCountVBloodKill = Database.getCountVBloodKill();
+
+                var filterlist = listCountVBloodKill.Where(x => x.Player != player).ToList();
+                
+                Database.setCountVBloodKill(filterlist);
+                Config.UpdateCountVBloodKill(filterlist);
+
+                ctx.Reply($"Contador do {player} zerado.");
+            }
+            else
+            {
+                ctx.Reply($"Jogador {player} não existe.");
+            }                   
+               
+        }
+
+        /// FIM DO REMOVE_KILL
+
         [Command("reload", "rl", description: "To reload the configuration of the user messages online, offline or death of the VBlood boss", adminOnly: true)]
         public static void RealoadMod(ChatCommandContext ctx)
+
         {
 
+    
             if (!Database.EnabledFeatures[NotifyFeature.offline])
             {
                 LoadDatabase.LoadUsersConfigOffline();
