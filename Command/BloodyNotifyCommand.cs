@@ -4,8 +4,6 @@ using BloodyNotify.AutoAnnouncer.Models;
 using BloodyNotify.DB;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
-using UnityEngine;
 using VampireCommandFramework;
 
 namespace BloodyNotify.Command
@@ -30,8 +28,11 @@ namespace BloodyNotify.Command
             }
         }
 
+<<<<<<< HEAD
 
         /// INICIO DO REMOVE_KILL
+=======
+>>>>>>> d4bcc3f546bd6fb43d9206594d85debdedd73feb
         [Command("removecount", "rc", description: "Remove the kill counter per player from VBlood.", adminOnly: true)]
         public static void RemoveCountKill(ChatCommandContext ctx, string player)
 
@@ -40,10 +41,17 @@ namespace BloodyNotify.Command
             {
                 var ListCountVBloodKill = Database.getCountVBloodKill();
 
+<<<<<<< HEAD
                 var FilterList = ListCountVBloodKill.Where(x => x.Player != player).ToList();
 
                 Database.setCountVBloodKill(FilterList);
                 Config.UpdateCountVBloodKill(FilterList);
+=======
+                var filterlist = listCountVBloodKill.Where(x => x.Player != player).ToList();
+
+                Database.setCountVBloodKill(filterlist);
+                Config.UpdateCountVBloodKill(filterlist);
+>>>>>>> d4bcc3f546bd6fb43d9206594d85debdedd73feb
 
                 ctx.Reply($"Contador do {player} zerado.");
             }
@@ -51,6 +59,7 @@ namespace BloodyNotify.Command
             {
                 ctx.Reply($"Jogador {player} não existe.");
             }
+<<<<<<< HEAD
 
         }
         
@@ -72,12 +81,18 @@ namespace BloodyNotify.Command
         }
         // FIM DO REMOVE_KILL
 
+=======
+        }
+
+>>>>>>> d4bcc3f546bd6fb43d9206594d85debdedd73feb
         [Command("reload", "rl", description: "To reload the configuration of the user messages online, offline or death of the VBlood boss", adminOnly: true)]
         public static void RealoadMod(ChatCommandContext ctx)
-
         {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d4bcc3f546bd6fb43d9206594d85debdedd73feb
             if (!Database.EnabledFeatures[NotifyFeature.offline])
             {
                 LoadDatabase.LoadUsersConfigOffline();
@@ -110,13 +125,11 @@ namespace BloodyNotify.Command
             }
 
             ctx.Reply("Reloaded configuration of BloodyNotify mod.");
-
         }
 
         [Command("vblood", "vba", usage: "ignore/unignore", description: "ignore/unignore vblood announce system.", adminOnly: false)]
         public static void Vbloodannounce(ChatCommandContext ctx, string action = "unignore")
         {
-
             var user = ctx.User;
 
             switch (action)
@@ -129,14 +142,12 @@ namespace BloodyNotify.Command
                     Database.removeVBloodNotifyIgnore(user.CharacterName.ToString());
                     ctx.Reply(FontColorChatSystem.Green($"You will receive notifications about the death of the VBlood. To undo this option use the command {FontColorChatSystem.Yellow(".notify vbloodannounce ignore")}"));
                     break;
-
             }
         }
 
         [Command("config", "cfg", usage: "[ auto, motd, newuser, online, offline, vblood ] true/false", description: "Enabled / Disabled the features of the mod. [ auto, motd, newuser, online, offline, vblood ]", adminOnly: true)]
         public static void ConfigMod(ChatCommandContext ctx, NotifyFeature feature, bool isEnabled)
         {
-
             Database.EnabledFeatures[feature] = isEnabled;
 
             var message = feature switch
