@@ -1,6 +1,8 @@
 ﻿using Bloody.Core;
 using Bloody.Core.API;
+using BloodyNotify.AutoAnnouncer.Models;
 using BloodyNotify.DB;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
@@ -20,7 +22,8 @@ namespace BloodyNotify.Command
                 if (user.IsAdmin)
                 {
                     ctx.Reply($"{FontColorChatSystem.Green("[ADMIN]")} {FontColorChatSystem.Yellow(user.CharacterName)}");
-                } else
+                }
+                else
                 {
                     ctx.Reply($"{FontColorChatSystem.Yellow(user.CharacterName)}");
                 }
@@ -29,37 +32,52 @@ namespace BloodyNotify.Command
 
 
         /// INICIO DO REMOVE_KILL
-
-        [Command("removecount","rc", description: "Remove the kill counter per player from VBlood.", adminOnly: true)]
-        public static void RemoveCountKill(ChatCommandContext ctx, string player) 
+        [Command("removecount", "rc", description: "Remove the kill counter per player from VBlood.", adminOnly: true)]
+        public static void RemoveCountKill(ChatCommandContext ctx, string player)
 
         {
             if (Core.Users.All.Any(x => x.CharacterName == (player)))
             {
-                var listCountVBloodKill = Database.getCountVBloodKill();
+                var ListCountVBloodKill = Database.getCountVBloodKill();
 
-                var filterlist = listCountVBloodKill.Where(x => x.Player != player).ToList();
-                
-                Database.setCountVBloodKill(filterlist);
-                Config.UpdateCountVBloodKill(filterlist);
+                var FilterList = ListCountVBloodKill.Where(x => x.Player != player).ToList();
+
+                Database.setCountVBloodKill(FilterList);
+                Config.UpdateCountVBloodKill(FilterList);
 
                 ctx.Reply($"Contador do {player} zerado.");
             }
             else
             {
                 ctx.Reply($"Jogador {player} não existe.");
-            }                   
-               
-        }
+            }
 
-        /// FIM DO REMOVE_KILL
+        }
+        
+        [Command("clearlist", "cl", description: "Clear list, generate a new one.", adminOnly: true)]
+        public static void RemoveCountKill(ChatCommandContext ctx)
+        {
+            // Cria uma nova lista
+            var ClearList = new List<Boss>();
+
+            // Salva a nova lista no banco de dados.
+            Database.setCountVBloodKill(ClearList);
+
+            // Atualiza o arquivo "lista" no servidor.
+            Config.UpdateCountVBloodKill(ClearList);
+
+            // Imprimi a mensagem.
+            ctx.Reply($"A lista está zerada, que comece os jogos.");
+
+        }
+        // FIM DO REMOVE_KILL
 
         [Command("reload", "rl", description: "To reload the configuration of the user messages online, offline or death of the VBlood boss", adminOnly: true)]
         public static void RealoadMod(ChatCommandContext ctx)
 
         {
 
-    
+
             if (!Database.EnabledFeatures[NotifyFeature.offline])
             {
                 LoadDatabase.LoadUsersConfigOffline();
